@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated Image</title>
+</head>
+
+<body>
+
+    <a id="cavasDownload" href="#" download>Download Image</a>
+    <br>
+    <script>
+        // Create a canvas element
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+
+        // Set canvas dimensions (adjust as needed)
+        canvas.width = 400; // Width of the image
+        canvas.height = 400; // Height of the image
+
+        // Background color
+        ctx.fillStyle = 'black';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Placeholder image (adjust dimensions and URL)
+        const image = new Image();
+        image.src = 'fox.jpg';
+
+        // Ensure the image is loaded before drawing
+        image.onload = () => {
+            ctx.drawImage(image, 20, 20, 120, 120); // Adjust dimensions and position
+
+            // Text
+            ctx.font = '16px Arial';
+            ctx.fillStyle = 'white';
+
+            // User's name
+            const name = 'John Doe';
+            ctx.fillText(name, 160, 50); // Adjust position
+
+            // User's address
+            const address = '123 Main St, City, Country';
+            ctx.fillText(address, 160, 80); // Adjust position
+
+            // Note
+            const note = 'Custom note here';
+            ctx.font = 'italic 14px Arial'; // Adjust font style
+            ctx.fillStyle = 'yellow'; // Adjust text color
+            ctx.fillText(note, 160, 110); // Adjust position
+
+            // Convert canvas to an image
+            const dataURL = canvas.toDataURL('image/png');
+
+            // Create an image element to display the generated image
+            const generatedImage = new Image();
+            generatedImage.src = dataURL;
+
+            // Add the generated image to the DOM
+            document.body.appendChild(generatedImage);
+
+            // You can also save the image as a file by converting it to a Blob and creating a download link.
+
+            const cavasDownload = document.getElementById("cavasDownload");
+            const pngDataUrl = canvas.toDataURL("image/png");
+            cavasDownload.href = pngDataUrl;
+        };
+
+
+    </script>
+</body>
+
+</html>
